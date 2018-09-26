@@ -7,17 +7,6 @@ module.exports = function getZerosCount(number, base) {
     .map((_, i) => i)
     .filter(i => isPrime(i) && num % i === 0);
 
-  // const basePrimeFactorSearch = (num) => {
-  //   const myArr = [];
-  //   for (let i = 0; i <= num; i += 1) {
-  //     if (isPrime(i) && num % i === 0) {
-  //       myArr.push(i);
-  //     }
-  //   }
-  //   console.log(myArr);
-  //   return myArr;
-  // };
-
   const limitPrimeExpSearch = (prime) => {
     const startfactor = 1;
     const startNum = 0;
@@ -45,22 +34,15 @@ module.exports = function getZerosCount(number, base) {
   };
 
   const basePrimeFactors = basePrimeFactorSearch(base);
-//  console.log(`basePrimeFactors: ${basePrimeFactors}`);
-  
+
   const baseFactorPowers = basePrimeFactorSearch(base).reduce(reducer, {});
-//  console.log(`baseFactorPowers:`);
-//  console.log(baseFactorPowers);
+
   const result = basePrimeFactors.map((prime) => {
     const limit = limitPrimeExpSearch(prime);
     const power = baseFactorPowers[prime];
-//    console.log(`prime: ${prime}, limit: ${limit}, power: ${power}`);
+
     return Math.floor(limit / power);
   });
 
-//  console.log(Math.min(...result));
-
-
   return Math.min(...result);
 };
-
-//getZerosCount(70497638, 2)
